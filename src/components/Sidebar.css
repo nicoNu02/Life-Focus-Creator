@@ -1,0 +1,10 @@
+.sidebar-container {
+  width: 260px;
+  height: 100vh;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0;
+}
