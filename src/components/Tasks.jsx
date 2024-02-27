@@ -6,6 +6,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { helpHttp } from "../helpers/helpHttp";
 import ModalForm from "./ModalForm";
 import useModals from "../hooks/useModals";
+import ModalOptionsTask from "./ModalOptionsTask";
 
 const DATABASE_ENDPOINT = "http://localhost:3000/tasks";
 const board = ["backlog", "todo", "inProgress", "done"];
@@ -13,6 +14,7 @@ let actualSection = "";
 const Tasks = () => {
   const [db, setDb] = useState(null);
   const [isShowingModalForm, toggleModalForm] = useModals();
+  const [isShowingModalOptions, toggleModalOptions] = useModals();
 
   useEffect(() => {
     helpHttp()
@@ -67,12 +69,6 @@ const Tasks = () => {
 
   const handleTaskClick = (e) => {};
 
-  const handleOptionsClick = (id) => {
-    const newDb = db.filter((item) => {
-      return id != item.id;
-    });
-    setDb(newDb);
-  };
   const handleClick = (name) => {
     toggleModalForm();
     actualSection = name;
@@ -115,7 +111,6 @@ const Tasks = () => {
                                       priority={it.priority}
                                       handleTaskClick={handleTaskClick}
                                       id={it.id}
-                                      handleOptionsClick={handleOptionsClick}
                                     />
                                   </div>
                                 );
