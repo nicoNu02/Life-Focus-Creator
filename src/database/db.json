@@ -1,64 +1,45 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "name": "taskname1",
-      "priority": "medium",
-      "section": "backlog"
-    },
-    {
-      "id": "2",
-      "name": "taskname2",
-      "priority": "medium",
-      "section": "backlog"
-    },
-    {
-      "id": "3",
-      "name": "taskname1",
-      "priority": "high",
-      "section": "todo"
-    },
-    {
       "id": "4",
-      "name": "taskname3",
+      "name": "taskname",
       "priority": "medium",
-      "section": "inProgress"
+      "section": "todo"
     },
     {
       "id": "5",
-      "name": "taskname4",
-      "priority": "medium",
-      "section": "done"
+      "name": "taskname55",
+      "priority": "high",
+      "section": "backlog"
     },
     {
       "id": "a6b3",
-      "name": "asdasd",
-      "priority": "medium",
-      "section": "backlog"
-    },
-    {
-      "id": "946e",
-      "name": "Todo 2",
-      "priority": "high",
-      "section": "todo"
-    },
-    {
-      "id": "228a",
-      "name": "asdasd",
-      "priority": "high",
-      "section": "backlog"
+      "name": "asd",
+      "priority": "low"
     },
     {
       "id": "a019",
       "name": "qweqwe",
-      "priority": "medium",
+      "priority": "low",
       "section": "todo"
     },
     {
-      "id": "acb4",
-      "name": "asdas",
-      "priority": "high",
-      "section": "backlog"
+      "id": "e2ee",
+      "name": "yoi",
+      "priority": "low",
+      "section": "inProgress"
+    },
+    {
+      "id": "08eb",
+      "name": "qweqwe",
+      "priority": "medium",
+      "section": "inProgress"
+    },
+    {
+      "id": "440e",
+      "name": "Lola",
+      "priority": "medium",
+      "section": "done"
     }
   ]
 }

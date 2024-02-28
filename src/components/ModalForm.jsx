@@ -1,31 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ModalForm.css";
 const initialForm = {
-  id: "",
   name: "",
   priority: "",
   section: "",
 };
-const ModalForm = ({ isOpen, toggleModalForm, createData, section, id }) => {
+const ModalForm = ({
+  isOpen,
+  toggleModalForm,
+  createData,
+  section,
+  id,
+  dataToEdit,
+  updateData,
+  setDataToEdit,
+}) => {
   const [form, setForm] = useState(initialForm);
 
+  useEffect(() => {
+    if (dataToEdit) {
+      setForm(dataToEdit);
+    } else {
+      setForm(initialForm);
+    }
+  }, [dataToEdit]);
+
   const handleChange = (e) => {
-    if (!e.target.value) return;
     setForm({
       ...form,
       [e.target.name]: e.target.value,
       section: section,
-      id: id,
     });
   };
 
   const handleSubmit = (e) => {
+    // if (!e.target.value) return;
     e.preventDefault();
-    createData(form);
-    setForm(initialForm);
-    toggleModalForm();
-  };
 
+    if (form.id) {
+      updateData(form);
+      toggleModalForm();
+    } else {
+      createData(form);
+      toggleModalForm();
+    }
+    handleReset();
+  };
+  const handleReset = (e) => {
+    setForm(initialForm);
+    setDataToEdit(null);
+  };
   return (
     <section className={`form-container ${!isOpen && "closed"}`}>
       <form onSubmit={handleSubmit}>
