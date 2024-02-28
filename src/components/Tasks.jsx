@@ -9,9 +9,10 @@ import useModals from "../hooks/useModals";
 
 const DATABASE_ENDPOINT = "http://localhost:3000/tasks";
 const board = ["backlog", "todo", "inProgress", "done"];
-let actualSection = "";
 const Tasks = () => {
+  const [actualSection, setActualSection] = useState("");
   const [db, setDb] = useState(null);
+  const [dataToEdit, setDataToEdit] = useState(null);
   const [isShowingModalForm, toggleModalForm] = useModals();
 
   useEffect(() => {
@@ -38,6 +39,32 @@ const Tasks = () => {
       });
   };
 
+  const deleteData = (id) => {
+    let options = {
+      headers: { "content-type": "application/json" },
+    };
+    let endpoint = `${DATABASE_ENDPOINT}/${id}`;
+    helpHttp()
+      .del(endpoint, options)
+      .then((res) => {
+        let newData = db.filter((el) => el.id !== id);
+        setDb(newData);
+      });
+  };
+
+  const editData = (data) => {
+    let endpoint = `${DATABASE_ENDPOINT}/${data.id}`;
+    console.log(endpoint);
+    helpHttp()
+      .put(endpoint, {
+        body: data,
+        "content-type": "application/json",
+      })
+      .then((res) => {
+        let newData = db.map((el) => (el.id === data.id ? data : el));
+        setDb(newData);
+      });
+  };
   const handleDragDrop = (results) => {
     const { destination, source } = results;
     if (!destination) return;
@@ -52,9 +79,10 @@ const Tasks = () => {
       destination.index = sourceIn;
     }
     if (destination.droppableId !== source.droppableId) {
-      // Update the section of the moved task if it's dropped into a different section
+      // Update the section of the moved task if its dropped into a different section
       movedItem.section = destination.droppableId;
       const removedItem = newDb.splice(source.index, 1)[0];
+      //adjusted the destination (la logica de esa linea esta sacada de internet)
       const adjustedDestinationIndex =
         destination.index - (source.index < destination.index ? 1 : 0);
       newDb.splice(adjustedDestinationIndex, 0, movedItem);
@@ -62,20 +90,35 @@ const Tasks = () => {
       destination.index = source.index;
     }
 
-    setDb(newDb);
+    // sorting task by section
+    let sortedDb = [];
+    board.map((section) => {
+      newDb.map((it) => {
+        if (it.section == section) {
+          sortedDb.push(it);
+        }
+      });
+    });
+
+    sortedDb.map((it) => {
+      let endpoint = `${DATABASE_ENDPOINT}/${it.id}`;
+      helpHttp()
+        .put(endpoint, {
+          body: it,
+          "content-type": "application/json",
+        })
+        .then((res) => {
+          db.map((el) => (el.id === it.id ? it : el));
+        });
+    });
+    setDb(sortedDb);
   };
 
   const handleTaskClick = (e) => {};
 
-  const handleOptionsClick = (id) => {
-    const newDb = db.filter((item) => {
-      return id != item.id;
-    });
-    setDb(newDb);
-  };
   const handleClick = (name) => {
     toggleModalForm();
-    actualSection = name;
+    setActualSection(name);
   };
 
   return (
@@ -115,7 +158,13 @@ const Tasks = () => {
                                       priority={it.priority}
                                       handleTaskClick={handleTaskClick}
                                       id={it.id}
-                                      handleOptionsClick={handleOptionsClick}
+                                      deleteData={deleteData}
+                                      dataToEdit={it}
+                                      setDataToEdit={setDataToEdit}
+                                      toggleModalForm={toggleModalForm}
+                                      setActualSection={() =>
+                                        setActualSection(item)
+                                      }
                                     />
                                   </div>
                                 );
@@ -136,8 +185,10 @@ const Tasks = () => {
         isOpen={isShowingModalForm}
         toggleModalForm={toggleModalForm}
         createData={createData}
+        updateData={editData}
         section={actualSection}
-        id={db && db.lenght}
+        dataToEdit={dataToEdit}
+        setDataToEdit={setDataToEdit}
       />
     </div>
   );
