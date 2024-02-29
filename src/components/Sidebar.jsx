@@ -1,18 +1,27 @@
 import SidebarItem from "./SidebarItem";
 import "./Sidebar.css";
-
+const links = [
+  { name: "Home", iconSrc: "" },
+  { name: "Tasks", iconSrc: "" },
+  { name: "Notes", iconSrc: "" },
+  { name: "Timer", iconSrc: "" },
+  { name: "Settings", iconSrc: "" },
+];
 const Sidebar = () => {
   return (
     <nav className="sidebar-container">
-      <SidebarItem name={"Home"} iconSrc={""} />
-      <SidebarItem name={"Tasks"} iconSrc={""} />
-      <SidebarItem name={"Notes"} iconSrc={""} />
-      <SidebarItem name={"Timer"} iconSrc={""} />
-      <SidebarItem
-        className="container settings"
-        name={"Settings"}
-        iconSrc={""}
-      />
+      {links.map((el, index) => {
+        return (
+          <SidebarItem
+            key={index}
+            name={el.name}
+            iconSrc={el.iconSrc}
+            className={
+              el.name === "Settings" ? "container settings" : "container"
+            }
+          />
+        );
+      })}
     </nav>
   );
 };
