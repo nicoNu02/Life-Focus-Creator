@@ -10,7 +10,7 @@
       "id": "5",
       "name": "taskname55",
       "priority": "high",
-      "section": "backlog"
+      "section": "done"
     },
     {
       "id": "a6b3",
@@ -21,25 +21,19 @@
       "id": "a019",
       "name": "qweqwe",
       "priority": "low",
-      "section": "todo"
+      "section": "done"
     },
     {
       "id": "e2ee",
       "name": "yoi",
       "priority": "low",
-      "section": "inProgress"
-    },
-    {
-      "id": "08eb",
-      "name": "qweqwe",
-      "priority": "medium",
-      "section": "inProgress"
+      "section": "todo"
     },
     {
       "id": "440e",
       "name": "Lola",
       "priority": "medium",
-      "section": "done"
+      "section": "todo"
     }
   ]
 }

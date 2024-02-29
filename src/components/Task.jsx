@@ -6,9 +6,7 @@ const Task = ({
   name,
   priority,
   innerRef,
-  handleTaskClick,
   id,
-  deleteData,
   dataToEdit,
   setDataToEdit,
   toggleModalForm,
@@ -20,7 +18,7 @@ const Task = ({
     setActualSection();
   };
   return (
-    <div className="task-container" ref={innerRef} onClick={handleTaskClick}>
+    <div className="task-container" ref={innerRef}>
       <Points handleOptionsClick={handleOptionsClick} id={id} />
       <div className="task-inside">
         <h3>{name}</h3>
@@ -29,7 +27,6 @@ const Task = ({
           id={id}
           isShowing={isShowingModalOptions}
           toggleModal={toggleModalOptions}
-          deleteData={deleteData}
           dataToEdit={dataToEdit}
           setDataToEdit={setDataToEdit}
           toggleModalForm={toggleModalForm}

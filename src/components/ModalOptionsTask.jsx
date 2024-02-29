@@ -1,11 +1,14 @@
+import { useContext } from "react";
+import DatabaseContext from "../contexts/DatabaseContext";
+
 const ModalOptionsTask = ({
   id,
   isShowing,
-  deleteData,
   dataToEdit,
   setDataToEdit,
   toggleModalForm,
 }) => {
+  const { deleteData } = useContext(DatabaseContext);
   return (
     <div className={`modal-options-container ${!isShowing && "closed"}`}>
       <p

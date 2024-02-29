@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./ModalForm.css";
+import DatabaseContext from "../contexts/DatabaseContext";
 const initialForm = {
   name: "",
   priority: "",
@@ -8,15 +9,12 @@ const initialForm = {
 const ModalForm = ({
   isOpen,
   toggleModalForm,
-  createData,
   section,
-  id,
   dataToEdit,
-  updateData,
   setDataToEdit,
 }) => {
   const [form, setForm] = useState(initialForm);
-
+  const { createData, editData: updateData } = useContext(DatabaseContext);
   useEffect(() => {
     if (dataToEdit) {
       setForm(dataToEdit);
@@ -46,7 +44,7 @@ const ModalForm = ({
     }
     handleReset();
   };
-  const handleReset = (e) => {
+  const handleReset = () => {
     setForm(initialForm);
     setDataToEdit(null);
   };
