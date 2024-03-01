@@ -4,13 +4,13 @@
       "id": "4",
       "name": "taskname",
       "priority": "medium",
-      "section": "todo"
+      "section": "inProgress"
     },
     {
       "id": "5",
       "name": "taskname55",
       "priority": "high",
-      "section": "done"
+      "section": "inProgress"
     },
     {
       "id": "a6b3",
@@ -21,13 +21,13 @@
       "id": "a019",
       "name": "qweqwe",
       "priority": "low",
-      "section": "done"
+      "section": "inProgress"
     },
     {
       "id": "e2ee",
       "name": "yoi",
       "priority": "low",
-      "section": "todo"
+      "section": "done"
     },
     {
       "id": "440e",
