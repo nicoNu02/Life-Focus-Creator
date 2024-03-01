@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
-import KanbanColumn from "./KanbanColumn";
-import Task from "./Task";
+import KanbanColumn from "../../components/KanbanColumn";
+import Task from "../../components/Task";
 import "./Tasks.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-import ModalForm from "./ModalForm";
-import useModals from "../hooks/useModals";
-import DatabaseContext from "../contexts/DatabaseContext";
-import { helpDragDrop } from "../helpers/helpDragDrop";
+import ModalForm from "../../components/ModalForm";
+import useModals from "../../hooks/useModals";
+import DatabaseContext from "../../contexts/DatabaseContext";
+import { helpDragDrop } from "../../helpers/helpDragDrop";
 
 const board = ["backlog", "todo", "inProgress", "done"];
 const Tasks = () => {
