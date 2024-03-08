@@ -1,16 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NotesCard from "../NotesCard";
 import NotesGrid from "../NotesGrid";
 import "./styles.css";
-import DatabaseNoteContext from "../../contexts/DatabaseNotesContext";
 import NotesModal from "../NotesModal";
 import useModals from "../../hooks/useModals";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const gridSize = { columns: 3, rows: 3 };
 
 function NotesContainer() {
-  const { notes, setNotes } = useContext(DatabaseNoteContext);
+  const notes = useSelector((state) => state);
   const [actualData, setActualData] = useState();
   const [isShowingModalNote, toggleModalNote] = useModals();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!actualData) {
@@ -29,10 +31,7 @@ function NotesContainer() {
 
   const handleDelete = (id) => {
     console.log("asdasd", id);
-    const db = [...notes];
-    db.splice(id, 1);
-    console.log(db);
-    setNotes(db);
+    dispatch({ type: "notes/deleteNote", payload: id });
   };
   return (
     <div className="notes-app-container">

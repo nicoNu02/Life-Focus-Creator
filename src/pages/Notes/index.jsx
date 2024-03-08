@@ -1,12 +1,7 @@
 import NotesContainer from "../../components/NotesContainer";
-import { DatabaseNoteContextProvider } from "../../contexts/DatabaseNotesContext";
 
 function Notes() {
-  return (
-    <DatabaseNoteContextProvider>
-      <NotesContainer />
-    </DatabaseNoteContextProvider>
-  );
+  return <NotesContainer />;
 }
 
 export default Notes;

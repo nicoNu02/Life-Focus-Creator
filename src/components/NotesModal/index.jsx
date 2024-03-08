@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
-import helpFormNotes from "../../helpers/helpFormNotes";
-import DatabaseNoteContext from "../../contexts/DatabaseNotesContext";
+import { useDispatch } from "react-redux";
 
 export default function NotesModal({
   data,
@@ -9,7 +8,8 @@ export default function NotesModal({
   toggleModalNote,
   setActualData,
 }) {
-  const { notes, setNotes } = useContext(DatabaseNoteContext);
+  // const { notes, setNotes } = useContext(DatabaseNoteContext);
+  const dispatch = useDispatch();
   const { id, text, name, category } = data;
   const initialForm = {
     id: id,
@@ -18,7 +18,6 @@ export default function NotesModal({
     category: category,
   };
   const [form, setForm] = useState(initialForm);
-
   useEffect(() => {
     if (id) {
       setForm({ ...initialForm, id: id || "" }); // Use empty string as fallback if id is missing
@@ -28,8 +27,15 @@ export default function NotesModal({
     e.preventDefault();
     toggleModalNote();
     if (!form.name && !form.text && !form.id) return;
-    const newDb = helpFormNotes(notes, form);
-    setNotes(newDb);
+    console.log(form);
+    if (form.id !== "") {
+      dispatch({ type: "note/updateNote", payload: form });
+    } else {
+      dispatch({
+        type: "note/addedNote",
+        payload: form,
+      });
+    }
     setActualData(null);
   };
 
