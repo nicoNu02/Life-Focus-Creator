@@ -1,5 +1,5 @@
 import "./Task.css";
-import useModals from "../hooks/useModals";
+import useModals from "../../hooks/useModals";
 import Points from "./points";
 import ModalOptionsTask from "./ModalOptionsTask";
 const Task = ({

@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Sidebar from "./components/sidebar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 import { DatabaseProvider } from "./contexts/DatabaseContext";
 import Notes from "./pages/Notes";
@@ -21,7 +21,7 @@ function App() {
               </DatabaseProvider>
             }
           />
-          <Route path="/notes" element={<Notes />} />
+          <Route path="/notes" element={<h1>Hola</h1>} />
           <Route path="/timer" element={<h1>Timer</h1>} />
         </Routes>
       </BrowserRouter>

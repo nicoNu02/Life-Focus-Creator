@@ -1,7 +1,5 @@
-import NotesContainer from "../../components/NotesContainer";
-
 function Notes() {
-  return <NotesContainer />;
+  return <h1>Hola</h1>;
 }
 
 export default Notes;

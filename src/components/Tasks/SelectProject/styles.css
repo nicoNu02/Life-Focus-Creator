@@ -1,0 +1,21 @@
+.form-select-project {
+  display: flex;
+  justify-content: center;
+}
+
+.select-project {
+  width: 10rem;
+  height: 2rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+  color: white;
+  font-weight: 600;
+  background-color: rgb(71, 71, 71);
+  border: none;
+  border-radius: 0.2rem;
+}
+
+.select-project > option {
+  background-color: rgb(53, 53, 53);
+  padding: 0 1rem;
+}

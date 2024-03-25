@@ -4,7 +4,9 @@ const KanbanColumn = ({ name, children, innerRef, handleClick }) => {
     <section className="container-kanban" ref={innerRef}>
       <div className="header">
         <h2>{name}</h2>
-        <button onClick={() => handleClick(name)}>➕</button>
+        <button className="add-button" onClick={() => handleClick(name)}>
+          ➕
+        </button>
       </div>
       <article>{children}</article>
     </section>

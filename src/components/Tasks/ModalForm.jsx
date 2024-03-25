@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import "./ModalForm.css";
-import DatabaseContext from "../contexts/DatabaseContext";
+import DatabaseContext from "../../contexts/DatabaseContext";
 const initialForm = {
   name: "",
   priority: "",
@@ -51,15 +51,33 @@ const ModalForm = ({
   return (
     <section className={`form-container ${!isOpen && "closed"}`}>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="input-name">Name</label>
+        <div className="header-modal-task">
+          <label htmlFor="input-name">Add task</label>
+          <span onClick={toggleModalForm}>X</span>
+        </div>
         <input
           type="text"
           id="input-name"
           name="name"
           onChange={handleChange}
           value={form.name}
+          className="input-name"
+          placeholder="Task name"
+          autoFocus
         />
-        <select name="priority" onChange={handleChange} value={form.priority}>
+        <textarea
+          name="description"
+          cols="30"
+          rows="5"
+          className="text-task"
+          placeholder="Description"
+        ></textarea>
+        <select
+          name="priority"
+          onChange={handleChange}
+          value={form.priority}
+          className="modal-select-priority"
+        >
           <option value="---">---</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>

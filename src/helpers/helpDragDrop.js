@@ -23,6 +23,13 @@ function helpDragDrop(results, db, board, endpointDatabase) {
     newDb.splice(adjustedDestinationIndex, 0, movedItem);
     source.index = adjustedDestinationIndex;
     destination.index = source.index;
+    // patching section change on database
+    let endpoint = `${endpointDatabase}/${movedItem.id}`;
+    fetch(endpoint, {
+      method: "PATCH",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(movedItem),
+    });
   }
 
   // sorting task by section
@@ -35,17 +42,6 @@ function helpDragDrop(results, db, board, endpointDatabase) {
     });
   });
 
-  sortedDb.map((it) => {
-    let endpoint = `${endpointDatabase}/${it.id}`;
-    helpHttp()
-      .put(endpoint, {
-        body: it,
-        "content-type": "application/json",
-      })
-      .then(() => {
-        db.map((el) => (el.id === it.id ? it : el));
-      });
-  });
   return { sortedDb };
 }
 

@@ -1,0 +1,15 @@
+.header-tasks {
+  display: flex;
+  height: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: rgb(44, 44, 44);
+  position: relative;
+}
+.filters-button {
+  width: 8rem;
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+}

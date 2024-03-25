@@ -1,0 +1,63 @@
+.form-container > form {
+  width: 30vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #393939;
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+}
+.header-modal-task {
+  display: flex;
+  justify-content: space-between;
+}
+.header-modal-task > label {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.header-modal-task > span {
+  cursor: pointer;
+}
+.input-name {
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+}
+.text-task {
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  color: white;
+}
+.modal-select-priority {
+  font-size: 0.9rem;
+  font-weight: 500;
+  height: 2rem;
+  appearance: none;
+  background-color: #393939;
+  color: white;
+  border: none;
+}
+
+.modal-select-priority > option {
+  background-color: #393939;
+}
+.form-container {
+  position: absolute;
+}
+.closed {
+  display: none;
+}
+
+.form-container > form > button[type="submit"] {
+}

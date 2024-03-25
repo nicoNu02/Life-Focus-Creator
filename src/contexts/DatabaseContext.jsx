@@ -3,7 +3,7 @@ import { helpHttp } from "../helpers/helpHttp";
 
 const DatabaseContext = createContext();
 
-const DATABASE_ENDPOINT = "http://localhost:3000/tasks";
+const DATABASE_ENDPOINT = "http://localhost:4000/tasks";
 const DatabaseProvider = ({ children }) => {
   const [db, setDb] = useState(null);
   useEffect(() => {
@@ -11,15 +11,17 @@ const DatabaseProvider = ({ children }) => {
       .get(DATABASE_ENDPOINT)
       .then((res) => {
         setDb(res);
+        console.log(res);
       });
   }, []);
 
   const createData = (body) => {
-    helpHttp()
-      .post(DATABASE_ENDPOINT, {
-        body: body,
-        "content-type": "application/json",
-      })
+    fetch(DATABASE_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(body),
+    })
+      .then((r) => r.json())
       .then((res) => {
         if (!res.err) {
           console.log(res);
@@ -46,15 +48,14 @@ const DatabaseProvider = ({ children }) => {
   const editData = (data) => {
     let endpoint = `${DATABASE_ENDPOINT}/${data.id}`;
     console.log(endpoint);
-    helpHttp()
-      .put(endpoint, {
-        body: data,
-        "content-type": "application/json",
-      })
-      .then(() => {
-        let newData = db.map((el) => (el.id === data.id ? data : el));
-        setDb(newData);
-      });
+    fetch(endpoint, {
+      method: "PATCH",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(data),
+    }).then(() => {
+      let newData = db.map((el) => (el.id === data.id ? data : el));
+      setDb(newData);
+    });
   };
 
   const data = {
